@@ -1,3 +1,6 @@
+import traceback
+
+import cx_Oracle
 from flask import Flask, redirect, url_for, request
 
 application = Flask(__name__, static_url_path='')
@@ -10,10 +13,19 @@ def root():
     return content
 
 
-
-@application.route('/success/<name>')
+# http://flask.pocoo.org/snippets/76/
+# important that path: because the "/" chars
+@application.route('/success/<path:name>')
 def success(name):
-    return 'welcome %s' % name
+    out = 'welcome %s' % name
+    try:
+        connection = cx_Oracle.connect(name)
+        cursor = connection.cursor()
+        cursor.execute("select * from user_tables")
+        out = ' '.join(str(s) for s in cursor.fetchall()) + '\n'
+    except Exception:
+        out = traceback.format_exc()
+    return out
 
 
 @application.route('/sqltestres', methods=['POST', 'GET'])
