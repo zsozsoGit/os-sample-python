@@ -1,9 +1,10 @@
-from flask import Flask, redirect, url_for, request
+from flask import Flask, redirect, url_for, request, send_from_directory
 app = Flask(__name__, static_url_path='')
 
 @app.route('/')
 def root():
-    return app.send_static_file('sqltest.html')
+    return app.send_static_file('/sqltest.html')
+    #return 'welcome TEST'
 
 @app.route('/success/<name>')
 def success(name):
