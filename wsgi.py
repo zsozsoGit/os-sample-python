@@ -1,22 +1,22 @@
 from flask import Flask, redirect, url_for, request
 
-app = Flask(__name__, static_url_path='')
+application = Flask(__name__, static_url_path='')
 with open('static/sqltest.html', 'r') as content_file:
     content = content_file.read()
 
 
-@app.route('/')
+@application.route('/')
 def root():
     return content
 
 
 
-@app.route('/success/<name>')
+@application.route('/success/<name>')
 def success(name):
     return 'welcome %s' % name
 
 
-@app.route('/sqltestres', methods=['POST', 'GET'])
+@application.route('/sqltestres', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
         user = request.form['nm']
@@ -27,4 +27,4 @@ def login():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    application.run(debug=True)
