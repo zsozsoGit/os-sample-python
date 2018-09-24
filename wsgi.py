@@ -1,11 +1,15 @@
 from flask import Flask, redirect, url_for, request
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
+
+@app.route('/')
+def root():
+    return app.send_static_file('sqltest.html')
 
 @app.route('/success/<name>')
 def success(name):
    return 'welcome %s' % name
 
-@app.route('/sqltest',methods = ['POST', 'GET'])
+@app.route('/sqltestres',methods = ['POST', 'GET'])
 def login():
    if request.method == 'POST':
       user = request.form['nm']
