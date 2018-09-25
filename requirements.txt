@@ -1,4 +1,4 @@
 gunicorn
 Flask
 cx_Oracle
-gocept.cxoracle
+git+git://github.com/molund/openshift-python36-oracle-instant-client
