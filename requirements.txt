@@ -1,4 +1,3 @@
 gunicorn
 Flask
 cx_Oracle
-libclntsh
