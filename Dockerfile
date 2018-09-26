@@ -1,5 +1,5 @@
-FROM centos:latest
-RUN yum -y install python-pip python-dev build-essential oracle-instantclient-basic oracle-instantclient
+FROM sergeymakinen/oracle-instant-client:11.2
+RUN yum -y install python-pip python-dev build-essential
 COPY . /app
 WORKDIR /app
 RUN pip install -r requirements.txt
