@@ -3,16 +3,23 @@ FROM sergeymakinen/oracle-instant-client:11.2
 RUN apt-get update -y
 RUN apt-get upgrade -y
 RUN apt-get install -y python3 python3-pip python-dev build-essential
-COPY . /app
-EXPOSE 5000
-WORKDIR /app
-RUN pip3 install -r requirements.txt
-RUN chmod -R u+x /app && \
-    chgrp -R 0 /app && \
-    chmod -R g=u /app
-RUN chmod g=u /etc/passwd
 
-USER 1001
-WORKDIR /app
-ENTRYPOINT [ "uid_entrypoint" ]
-CMD ["wsgi.py"]
+EXPOSE 5000
+
+ENV APP_ROOT=/app \
+    USER_NAME=default \
+    USER_UID=10001
+ENV APP_HOME=${APP_ROOT}/src  PATH=$PATH:${APP_ROOT}/bin
+RUN mkdir -p ${APP_HOME}
+COPY bin/ ${APP_ROOT}/bin/
+RUN chmod -R ug+x ${APP_ROOT}/bin && sync && \
+    useradd -l -u ${USER_UID} -r -g 0 -d ${APP_ROOT} -s /sbin/nologin -c "${USER_NAME} user" ${USER_NAME} && \
+    chown -R ${USER_UID}:0 ${APP_ROOT} && \
+    chmod -R g=u ${APP_ROOT}
+
+####### Add app-specific needs below. #######
+### Containers should NOT run as root as a good practice
+USER 10001
+WORKDIR ${APP_ROOT}
+CMD run
+
