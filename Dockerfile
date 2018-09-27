@@ -6,7 +6,8 @@ RUN apt-get install -y python3 python3-pip python-dev build-essential
 COPY . /app
 EXPOSE 5000
 RUN pip3 install -r requirements.txt
-RUN chgrp -R 0 /app && \
+RUN chmod -R u+x /app && \
+    chgrp -R 0 /app && \
     chmod -R g=u /app
 RUN chmod g=u /etc/passwd
 
