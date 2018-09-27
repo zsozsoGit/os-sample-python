@@ -7,7 +7,7 @@ RUN apt-get install -y python3 python3-pip python-dev build-essential
 EXPOSE 5000
 ENV APP_ROOT=/app \
     USER_NAME=default \
-    USER_UID=10001
+    USER_UID=1001230000
 ENV APP_HOME=${APP_ROOT}/src  PATH=$PATH:${APP_ROOT}/bin
 RUN mkdir -p ${APP_HOME}
 COPY . /${APP_ROOT}
@@ -19,7 +19,7 @@ RUN chmod -R ug+x ${APP_ROOT}/bin && sync && \
 RUN pip3 install -r /app/requirements.txt
 ####### Add app-specific needs below. #######
 ### Containers should NOT run as root as a good practice
-USER 10001
+USER 1001230000
 WORKDIR ${APP_ROOT}
 CMD run
 
