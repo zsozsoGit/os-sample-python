@@ -5,6 +5,7 @@ RUN apt-get upgrade -y
 RUN apt-get install -y python3 python3-pip python-dev build-essential
 COPY . /app
 EXPOSE 5000
+WORKDIR /app
 RUN pip3 install -r requirements.txt
 RUN chmod -R u+x /app && \
     chgrp -R 0 /app && \
