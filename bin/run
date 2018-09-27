@@ -1,2 +1,3 @@
 #!/bin/sh
-exec tail -f /dev/null
+#exec tail -f /dev/null
+exec python3 wsgi.py
