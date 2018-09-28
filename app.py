@@ -1,7 +1,7 @@
-import getpass
 import traceback
-import unittest.mock as mock
 
+# import unittest.mock as mock
+# from mock import patch, MagicMock
 import cx_Oracle
 from flask import Flask, redirect, url_for, request
 
@@ -42,5 +42,5 @@ def login():
 
 if __name__ == '__main__':
     # see https://lists.openshift.redhat.com/openshift-archives/dev/2015-July/msg00043.html
-    with mock.patch.object(getpass, "getuser", return_value='default'):
-        application.run(debug=True, host='0.0.0.0')
+    # with mock.patch.object(getpass, "getuser", return_value='default'):
+    application.run(debug=True, host='0.0.0.0')
