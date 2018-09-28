@@ -38,7 +38,6 @@ def login():
         user = request.args.get('nm')
         return redirect(url_for('success', name=user))
 
-
 if __name__ == '__main__':
     # see https://lists.openshift.redhat.com/openshift-archives/dev/2015-July/msg00043.html
     with mock.patch.object(getpass, "getuser", return_value='default'):
