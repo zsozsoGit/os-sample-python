@@ -23,6 +23,6 @@ RUN echo 'default:x:1001230000:1001230000:python-dev:/app:/bin/bash' >> /etc/pas
 
 USER 1001230000
 WORKDIR ${APP_ROOT}
-ENTRYPOINT [ "uid_entrypoint" ]
+#ENTRYPOINT [ "uid_entrypoint" ]
 CMD run
 
