@@ -10,7 +10,7 @@ ENV APP_ROOT=/app \
     USER_UID=1001230000
 ENV APP_HOME=${APP_ROOT}/src  PATH=$PATH:${APP_ROOT}/bin
 RUN mkdir -p ${APP_HOME}
-COPY . /${APP_ROOT}
+COPY . ${APP_ROOT}
 COPY bin/ ${APP_ROOT}/bin/
 RUN chmod -R ug+x ${APP_ROOT}/bin && sync && \
     useradd -l -u ${USER_UID} -r -g 0 -d ${APP_ROOT} -s /sbin/nologin -c "${USER_NAME} user" ${USER_NAME} && \
