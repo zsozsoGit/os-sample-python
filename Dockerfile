@@ -20,7 +20,9 @@ RUN pip install -r /app/requirements.txt
 RUN echo 'default:x:1001230000:1001230000:python-dev:/app:/bin/bash' >> /etc/passwd
 ####### Add app-specific needs below. #######
 ### Containers should NOT run as root as a good practice
+
 USER 1001230000
 WORKDIR ${APP_ROOT}
+ENTRYPOINT [ "uid_entrypoint" ]
 CMD run
 
