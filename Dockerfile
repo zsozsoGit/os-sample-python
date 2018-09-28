@@ -17,7 +17,7 @@ RUN chmod -R ug+x ${APP_ROOT}/bin && sync && \
     chown -R ${USER_UID}:0 ${APP_ROOT} && \
     chmod -R g=u ${APP_ROOT}
 RUN pip install -r /app/requirements.txt
-RUN echo 'default:x:1001230000:1001230000:python-dev:/app:/bin/bash' >> /etc/passw
+RUN echo 'default:x:1001230000:1001230000:python-dev:/app:/bin/bash' >> /etc/passwd
 ####### Add app-specific needs below. #######
 ### Containers should NOT run as root as a good practice
 USER 1001230000
