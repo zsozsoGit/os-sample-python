@@ -16,7 +16,7 @@ RUN chmod -R ug+x ${APP_ROOT}/bin && sync && \
     useradd -l -u ${USER_UID} -r -g 0 -d ${APP_ROOT} -s /sbin/nologin -c "${USER_NAME} user" ${USER_NAME} && \
     chown -R ${USER_UID}:0 ${APP_ROOT} && \
     chmod -R g=u ${APP_ROOT}
-RUN pip3 install -r /app/requirements.txt
+RUN pip install -r /app/requirements.txt
 ####### Add app-specific needs below. #######
 ### Containers should NOT run as root as a good practice
 USER 1001
