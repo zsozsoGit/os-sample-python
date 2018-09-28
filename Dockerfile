@@ -2,7 +2,7 @@ FROM sergeymakinen/oracle-instant-client:11.2
 
 RUN apt-get update -y
 RUN apt-get upgrade -y
-RUN apt-get install -y python3 python3-pip python-dev build-essential
+RUN apt-get install -y python-pip python-dev build-essential
 
 EXPOSE 5000
 ENV APP_ROOT=/app \
